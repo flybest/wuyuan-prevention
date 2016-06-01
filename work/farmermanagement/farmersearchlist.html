@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>动物疫病防控</title>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css"/>
+    
+</head>
+<body>
+	<div class="mui-content">
+		<div id="searchForm">
+			<input id="farmerName" type="text" value="" placeholder="请输入农户姓名" />
+			<button id='showViliagePicker' class="mui-btn mui-btn-block" type='button'>请选择村舍</button>
+			<button id='searchBtn' class="mui-btn mui-btn-block mui-btn-success">查询</button>
+		</div>
+		<div id="farmerPullrefresh" class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-checkbox">
+						<a id="a470264" data-toggle="张三">
+							<input class="checkbox checkmode" name="style" type="checkbox" checked="" value="">
+							<img class="mui-media-object mui-pull-right" src="http://172.16.80.232/wuyuan-prevetion/server/img/muwu.jpg">
+							<div class="mui-media-body checkmode">张三 隆兴昌镇乌兰村北路12号
+								<p class="mui-ellipsis">电话：13811100222 牛20头</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../js/mui.min.js"></script>
+	<script type="text/javascript" src="../../js/mui.picker.js"></script>
+	<script type="text/javascript" src="../../js/mui.poppicker.js" ></script>
+	<script type="text/javascript" src="../../js/city.data.js"></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript" src="../../js/errorcode.js" ></script>
+	<script type="text/javascript" src="../../js/userinfo.js" ></script>
+	<script type="text/javascript" charset="UTF-8">
+      	var editMode = false;
+      	var parentWebview = null;
+      	var delItems = new Array();
+      	var wd;
+      	var g_region='';
+
+		var onDownSuccess = function(data){
+			var table = document.body.querySelector('.mui-table-view');
+			var err="上拉显示更多";
+			try{
+				for (var i = 0; i < data.respondCount; i++) {
+					var li = document.createElement('li');
+					li.className = 'mui-table-view-cell mui-media mui-checkbox';
+					var url=data.farmers[i].img?data.farmers[i].img:'${getMC()}/page/img/work-default.png';
+					li.innerHTML = '<a id="'+ data.farmers[i].id +'" data-toggle="'+ data.farmers[i].name +'">	<input class="checkbox" name="style" type="checkbox" value=""><img class="mui-media-object mui-pull-right" src="'+ 
+						url +'"><div class="mui-media-body">'+data.farmers[i].name+' '+data.farmers[i].addr 
+						+'<p class="mui-ellipsis">电话：'+data.farmers[i].tel +' ' +data.farmers[i].animal +'</p></div></a>'
+					table.insertBefore(li, table.firstChild);
+					var link=document.querySelector('#'+data.farmers[i].id);
+					link.addEventListener('tap',function(){
+						if(!editMode){
+							//这里打开详情窗口显示信息
+							infoPage = plus.webview.getWebviewById('farmerinfo');
+							mui.fire(infoPage,'getFarmerInfo',{id:this.getAttribute('id'),name:this.getAttribute('data-toggle')});
+							mui.openWindow({id:'farmerinfo'});
+						}
+					});
+					link.addEventListener('longtap',function(){
+						if(!editMode){
+							startEdit(this);
+						}
+					});
+					link.querySelector('.checkbox').addEventListener('tap',function(e){
+						changeState(this);
+					});
+				}	
+			}catch(e){
+				console.log(e.message);
+				if(document.body.querySelectorAll('.mui-table-view-cell').length<10)
+			    		err=errorCode.BAD_DATA;
+			    else
+			    		mui.toast(errorCode.BAD_DATA);
+			}
+			mui('#farmerPullrefresh').pullRefresh().endPulldownToRefresh(false);
+			mui('#farmerPullrefresh').pullRefresh().pullCaption.innerHTML=err;
+		};
+		 
+		var onDownError = function(errcode){
+		    var err="";
+		    switch(errcode){
+			    case 'FAILED_NETWORK':
+			        err=errorCode.FAILED_NETWORK;
+			        break;
+			    default:
+			        err=errorCode.FAILED_LOADED;
+		    }
+		    mui('#farmerPullrefresh').pullRefresh().endPulldownToRefresh(false);
+		    if(document.body.querySelectorAll('.mui-table-view-cell').length<10)
+		    		mui('#farmerPullrefresh').pullRefresh().pullCaption.innerHTML=err;
+		    else
+		    		mui.toast(err);
+		};
+		
+		function pulldownRefresh() {
+			if(editMode)
+				endEdit();  //一旦下拉更新，就结束编辑模式；
+			var token=userInfo.token();
+			var farmerName=document.getElementById('farmerName').value;
+			//var region=document.getElementById('showViliagePicker').value;
+			var params = {account:userInfo.username(), farmername:farmerName, region:g_region, newdata:false};
+			app.webQuery(app.getfarmers_url, params, onDownSuccess, onDownError, 1);
+		};
+		
+		var onUpSuccess = function(data){
+			var table = document.body.querySelector('.mui-table-view');
+			var err="上拉显示更多";
+			try{
+				for (var i = 0; i < data.respondCount; i++) {
+					var li = document.createElement('li');
+					li.className = 'mui-table-view-cell mui-media mui-checkbox';
+					var url=data.farmers[i].img?data.farmers[i].img:'${getMC()}/page/img/work-default.png';
+					li.innerHTML = '<a id="'+ data.farmers[i].id +'" data-toggle="'+ data.farmers[i].name +'">	<input class="checkbox" name="style" type="checkbox" value=""><img class="mui-media-object mui-pull-right" src="'+ 
+						url +'"><div class="mui-media-body">'+data.farmers[i].name+' '+data.farmers[i].addr 
+						+'<p class="mui-ellipsis">电话：'+data.farmers[i].tel +' ' +data.farmers[i].animal +'</p></div></a>'
+					table.appendChild(li);
+					var link=document.querySelector('#'+data.farmers[i].id);
+					link.addEventListener('tap',function(){
+						if(!editMode){
+							//这里打开详情窗口显示信息
+							infoPage = plus.webview.getWebviewById('farmerinfo');
+							mui.fire(infoPage,'getFarmerInfo',{id:this.getAttribute('id'),name:this.getAttribute('data-toggle')});
+							mui.openWindow({id:'farmerinfo'});
+						}
+					});
+					link.addEventListener('longtap',function(){
+						if(!editMode){
+							startEdit(this);
+						}
+					});
+					link.querySelector('.checkbox').addEventListener('tap',function(e){
+						changeState(this);
+					});
+				} 
+			}catch(e){
+				console.log(e.message);
+				if(document.body.querySelectorAll('.mui-table-view-cell').length<10)
+			    		err=errorCode.BAD_DATA;
+			    else
+			    		mui.toast(errorCode.BAD_DATA);
+			}
+			
+			mui('#farmerPullrefresh').pullRefresh().endPullupToRefresh(false);
+			mui('#farmerPullrefresh').pullRefresh().pullCaption.innerHTML=err;
+		};
+		 
+		var onUpError = function(errcode){
+		    var err="";
+		    switch(errcode){
+			    case 'FAILED_NETWORK':
+			        err=errorCode.FAILED_NETWORK;
+			        break;
+			    default:
+			        err=errorCode.FAILED_LOADED;
+		    }
+		    mui('#farmerPullrefresh').pullRefresh().endPullupToRefresh(false);
+		    if(document.body.querySelectorAll('.mui-table-view-cell').length<10)
+		    		mui('#farmerPullrefresh').pullRefresh().pullCaption.innerHTML=err;
+		    else
+		    		mui.toast(err);
+		}; 
+ 
+		function pullupRefresh() {
+			if(editMode)
+				endEdit();  //一旦上拉更新，就结束编辑模式；
+			var token=userInfo.token();
+			var farmerName=document.getElementById('farmerName').value || "";
+			//var region=document.getElementById('showViliagePicker').value || "";
+			var params = {account:userInfo.username(), farmername:farmerName, region:g_region, newdata:false};
+			app.webQuery(app.getfarmers_url, params, onUpSuccess, onUpError, 1);
+		};
+		
+		var startEdit = function(starter){
+			editMode=true;
+			var a = document.getElementsByTagName('a');
+			if(a){
+				for (var i=0;i<a.length;i++) {
+					a[i].querySelector('.checkbox').checked=false;
+					a[i].querySelector('.checkbox').className='checkbox checkmode';
+					a[i].querySelector('.mui-media-body').className='mui-media-body checkmode';
+				}
+				changeState(starter.querySelector('.checkbox'));
+				
+				//这里还需要调整导航栏的按钮
+				if(parentWebview==null){
+					parentWebview = plus.webview.currentWebview().parent();
+				}
+				parentWebview.evalJS("editing(true)");
+			}
+		};
+		
+		var endEdit = function(){
+			editMode=false;
+			var a = document.getElementsByTagName('a');
+			if(a){
+				for (var i=0;i<a.length;i++) {
+					a[i].querySelector('.checkbox').className='checkbox';
+					a[i].querySelector('.mui-media-body').className='mui-media-body';
+					a[i].querySelector('.checkbox').checked=false;
+				}
+	            //这里还需要调整导航栏的按钮
+	            if(parentWebview==null){
+					parentWebview = plus.webview.currentWebview().parent();
+				}
+				parentWebview.evalJS("editing(false)");
+			}
+		};
+		
+		var delSelectedItems = function(){
+			//这里开始删除选择的项目，然后调用ajax删除。
+			var links = document.getElementsByTagName('a');
+			delItems=new Array();
+			if(links){
+//				for(var i=0;i<links.length;i++){
+//					var box=links[i].querySelector('.checkbox');
+//					if(box.checked){
+//						delItems.unshift(links[i].parentNode);
+//					}
+//				};
+//				
+//				if(delItems.length==0){
+//					mui.alert("请先选择需要删除的记录");
+//					return;
+//				}
+				
+				var ui=document.querySelector('.mui-table-view');
+				var checkboxs = ui.querySelectorAll('input[type="checkbox"]:checked');
+				if(checkboxs.length==0){
+					mui.alert("请先选择需要删除的记录");
+					return;
+				}
+				
+				var idList=[];
+				for(var i=0;i<checkboxs.length;i++){
+					delItems.unshift(checkboxs[i].parentNode.parentNode);
+					idList.push({id:checkboxs[i].parentNode.getAttribute('id')});
+				};
+				
+				var btn = ["确定","取消"];
+				mui.confirm('确认删除选择的项目？','提示',btn,function(e){
+					if(e.index==0){
+						wd = plus.nativeUI.showWaiting("获取信息中，请等待...",{back:"none"});
+						var params = {farmerIdList:JSON.stringify(idList)};
+						app.webQuery(app.delfarmers_url, params, onDelSuccess, onDelError, 1);
+					}
+				});
+			}
+		};
+		
+		var onDelSuccess = function(data){
+			try{
+				var table = document.body.querySelector('.mui-table-view');
+				for (var i=0;i<delItems.length;i++) {
+					var a=delItems[i].querySelector('a');
+					a.removeEventListener('tap',function(){});
+					a.removeEventListener('longtap',function(){});
+					a.querySelector('.checkbox').removeEventListener('tap',function(){});
+					table.removeChild(delItems[i]);
+				}
+			}catch(e){
+				//TODO handle the exception
+				console.log(e.message);
+				mui.toast(errorCode.FAILED_DEL);
+			}
+			wd.close();
+		};
+		
+		var onDelError = function(errcode){
+			wd.close();
+		    switch(errcode){
+			    case 'FAILED_NETWORK':
+			        mui.toast(errorCode.FAILED_NETWORK);
+			        break;
+			    default:
+			        mui.toast(errorCode.UNKNOW_ERROR);
+		    };
+		};
+		
+		var changeState = function(box){
+			box.checked=!box.checked;
+		};
+		
+		(function($, doc) {
+			$.init({
+				pullRefresh : {
+					container:'#farmerPullrefresh',//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+					down: {
+						callback: pulldownRefresh
+					},
+					up : {
+						contentrefresh : '正在加载...',//可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore : '没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback : pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				},
+				gestureConfig:{
+					longtap: true, //默认为false
+				}
+			});
+			
+			$.plusReady(function() {
+			
+				g_region=userInfo.userregion();
+				//级联示例
+				var cityPicker = new $.PopPicker({
+					layer: 2
+				});
+				cityPicker.setData(cityData);
+				var showCityPickerButton = doc.getElementById('showViliagePicker');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker.show(function(items) {
+						showCityPickerButton.innerText = items[1].text;
+						showCityPickerButton.value=items[1].value;
+						g_region=items[1].value
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+				setTimeout(function() {
+					mui('#farmerPullrefresh').pullRefresh().pullupLoading();
+				}, 1000); 
+				
+				document.getElementById("searchBtn").addEventListener("tap",function(){
+					var table = document.body.querySelector('.mui-table-view');
+					while(table.hasChildNodes()) 
+				        table.removeChild(table.firstChild);
+					mui('#farmerPullrefresh').pullRefresh().pullupLoading();
+				});
+			});
+			
+//			$.ready(function(){
+//			});
+		})(mui, document);
+    </script>
+</body>
+</html>

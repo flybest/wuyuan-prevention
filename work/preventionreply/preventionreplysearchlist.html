@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>动物疫病防控</title>
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    		<link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+	</head>
+	<body> 
+		<div class="mui-content">
+			<div id="prevenSearch" class="mui-row">
+				<div class="mui-col-xs-8 prevenCol">	<button id='prevenDate' data-options='{"type":"date"}' class="btn mui-btn mui-btn-block">请选择免疫日期</button></div>
+				<div class="mui-col-xs-4 prevenCol"><button id='searchBtn' class="mui-btn mui-btn-block mui-btn-success">查询</button></div>
+			</div>
+			<div id="replyPullrefresh" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--<div class="workBlock">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-media">
+								隆兴昌镇乌兰村<br> 下发时间：2016-03-18 12:57:03
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<img class="mui-media-object mui-pull-right" src="../../img/yuantiao.jpg">
+								<div class="mui-media-body">
+									董国良 隆兴昌镇乌兰村北路12号
+									<p class='mui-ellipsis'>电话：13022446688 牛20头</p>
+								</div>
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<img class="mui-media-object mui-pull-right" src="../../img/shuijiao.jpg">
+								<div class="mui-media-body">
+									张大国 隆兴昌镇乌兰村北路13号
+									<p class='mui-ellipsis'>电话：13022446689 牛10头</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="workBlock">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-media">
+								隆兴昌镇永强村<br>下发时间：2016-03-18 12:58:03
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<img class="mui-media-object mui-pull-right" src="../../img/yuantiao.jpg">
+								<div class="mui-media-body">
+									赵永强 隆兴昌镇乌兰村北路12号
+									<p class='mui-ellipsis'>电话：13022446688 牛20头</p>
+								</div>
+							</li>
+						</ul>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/mui.picker.min.js"></script>
+		<script type="text/javascript" src="../../js/app.js" ></script>
+		<script type="text/javascript" src="../../js/errorcode.js" ></script>
+		<script type="text/javascript" src="../../js/userinfo.js" ></script>
+		<script>
+			var addFarmer = function(container, farmer){
+				var li=document.createElement('li');
+				li.className='mui-table-view-cell mui-media';
+				var url=farmer.url?farmer.url:'${getMC()}/page/img/work-default.png';
+				li.innerHTML='<img class="mui-media-object mui-pull-right" src="'+ url +'"><div class="mui-media-body">'+farmer.name +
+							' '+farmer.addr +'<p class="mui-ellipsis">电话：'+farmer.tel+' '+farmer.animal+'</p></div>';
+				container.appendChild(li);
+			};
+		
+			var onDownSuccess = function(data){
+				var table = document.body.querySelector('.mui-scroll');
+				var err="上拉显示更多";
+				try{
+					for (var i = 0; i < data.respondCount; i++) {
+						var div=document.createElement('div');
+						div.className='workBlock';
+						div.innerHTML='<ul class="mui-table-view"><li id="'+ data.works[i].workid +'" class="mui-table-view-cell mui-media">'+data.works[i].region+'<br> 下发时间：'+ data.works[i].sendtime +'</li></ul>';
+						for (var j=0;j<data.works[i].farmers.length;j++) {
+							addFarmer(div.querySelector('.mui-table-view'), data.works[i].farmers[j]);	
+						};
+						table.insertBefore(div, table.firstChild);
+						var li=document.getElementById(data.works[i].workid);
+						li.addEventListener('tap',function(){
+							//这里打开详情窗口显示信息
+							infoPage = plus.webview.getWebviewById('preventionreplyinfo');
+							mui.fire(infoPage,'getReplyInfo',{id:this.getAttribute('id'),name:userInfo.realname()});
+							mui.openWindow({id:'preventionreplyinfo'});
+						})
+					};
+				}catch(e){
+					console.log(e.message);
+					if(document.body.querySelectorAll('.workBlock').length<4)
+				    		err=errorCode.BAD_DATA;
+				    else
+				    		mui.toast(errorCode.BAD_DATA);
+				}
+				mui('#replyPullrefresh').pullRefresh().endPulldownToRefresh(false);
+				mui('#replyPullrefresh').pullRefresh().pullCaption.innerHTML=err;
+			};
+			 
+			var onDownError = function(errcode){
+			    var err="";
+			    switch(errcode){
+				    case 'FAILED_NETWORK':
+				        err=errorCode.FAILED_NETWORK;
+				        break;
+				    default:
+				        err=errorCode.FAILED_LOADED;
+			    }
+			    mui('#replyPullrefresh').pullRefresh().endPulldownToRefresh(false);
+			    if(document.body.querySelectorAll('.mui-table-view-cell').length<4)
+			    		mui('#replyPullrefresh').pullRefresh().pullCaption.innerHTML=err;
+			    else
+			    		mui.toast(err);
+			};
+			
+			function pulldownRefresh() {
+				var realname=userInfo.realname();
+				var prevenDate=document.getElementById('prevenDate').value || "";
+				var params = {realname:realname, prevenDate:prevenDate, newdata:true};
+				app.webQuery(app.getreply_url, params, onDownSuccess, onDownError, 1);
+			};
+			
+			var onUpSuccess = function(data){
+				var table = document.body.querySelector('.mui-scroll');
+				var err="上拉显示更多";
+				try{
+					for (var i = 0; i < data.respondCount; i++) {
+						var div=document.createElement('div');
+						div.className='workBlock';
+						div.innerHTML='<ul class="mui-table-view"><li id="'+ data.works[i].workid +'" class="mui-table-view-cell mui-media">'+data.works[i].region+'<br> 下发时间：'+ data.works[i].sendtime +'</li></ul>';
+						for (var j=0;j<data.works[i].farmers.length;j++) {
+							addFarmer(div.querySelector('.mui-table-view'), data.works[i].farmers[j]);	
+						};
+						table.appendChild(div);
+						var li=document.getElementById(data.works[i].workid);
+						li.addEventListener('tap',function(){
+							//这里打开详情窗口显示信息
+							infoPage = plus.webview.getWebviewById('preventionreplyinfo');
+							mui.fire(infoPage,'getReplyInfo',{id:this.getAttribute('id'),name:userInfo.realname()});
+							mui.openWindow({id:'preventionreplyinfo'});
+						})
+					}; 
+				}catch(e){
+					console.log(e.message);
+					if(document.body.querySelectorAll('.workBlock').length<4)
+				    		err=errorCode.BAD_DATA;
+				    else
+				    		mui.toast(errorCode.BAD_DATA);
+				}
+				
+				mui('#replyPullrefresh').pullRefresh().endPullupToRefresh(false);
+				mui('#replyPullrefresh').pullRefresh().pullCaption.innerHTML=err;
+			};
+			 
+			var onUpError = function(errcode){
+			    var err="";
+			    switch(errcode){
+				    case 'FAILED_NETWORK':
+				        err=errorCode.FAILED_NETWORK;
+				        break;
+				    default:
+				        err=errorCode.FAILED_LOADED;
+			    }
+			    mui('#replyPullrefresh').pullRefresh().endPullupToRefresh(false);
+			    if(document.body.querySelectorAll('.workBlock').length<4)
+			    		mui('#replyPullrefresh').pullRefresh().pullCaption.innerHTML=err;
+			    else
+			    		mui.toast(err);
+			}; 
+ 
+			function pullupRefresh() {
+				var realname=userInfo.realname();
+				var prevenDate=document.getElementById('prevenDate').value || "";
+				var params = {realname:realname, prevenDate:prevenDate, newdata:false};
+				app.webQuery(app.getreply_url, params, onUpSuccess, onUpError, 1);
+			};
+		
+			(function($) {
+				$.init({
+					pullRefresh : {
+						container:'#replyPullrefresh',//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+						down: {
+							callback: pulldownRefresh
+						},
+						up : {
+							contentrefresh : '正在加载...',//可选，正在加载状态时，上拉加载控件上显示的标题内容
+							contentnomore : '没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+							callback : pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+						}
+					}
+				});
+				
+				$.plusReady(function(){
+					document.getElementById('prevenDate').addEventListener('tap', function() {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						var options = JSON.parse(optionsJson);
+						var picker = new $.DtPicker(options);
+						var btn=this;
+						picker.show(function(rs) {
+							btn.innerText = rs.text;
+							btn.value = rs.value;
+							picker.dispose();
+						});
+					}, false);
+					
+					setTimeout(function() {
+						mui('#replyPullrefresh').pullRefresh().pullupLoading();
+					}, 1000); 
+					
+					document.getElementById('searchBtn').addEventListener('tap', function(){
+						var table = document.body.querySelector('.mui-scroll');
+						while(table.hasChildNodes()) 
+					        table.removeChild(table.firstChild);
+						mui('#replyPullrefresh').pullRefresh().pullupLoading();
+					});
+				});
+			})(mui);
+		</script>
+	</body>
+</html>

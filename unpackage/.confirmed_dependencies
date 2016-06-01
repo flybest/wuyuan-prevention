@@ -1,0 +1,141 @@
+{
+  "index.html": {
+    "resources": [
+      "js/app.js",
+      "js/errorcode.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/userinfo.js"
+    ],
+    "refer": [
+      "navigation.html",
+      "login.html"
+    ]
+  },
+  "login.html": {
+    "resources": [
+      "css/iconfont.css",
+      "fonts/iconfont.ttf",
+      "js/mui.enterfocus.js",
+      "css/app.css",
+      "js/md5.js",
+      "js/app.js",
+      "js/errorcode.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/userinfo.js",
+      "fonts/mui.ttf",
+      "img/logobg.png"
+    ],
+    "refer": []
+  },
+  "navigation.html": {
+    "resources": [
+      "css/app.css",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/app.js",
+      "img/3.png",
+      "img/1.png"
+    ],
+    "refer": [
+      "work/farmermanagement/farmersearch.html",
+      "setting.html",
+      "work/preventionreply/preventionreplysearch.html",
+      "work/farmermanagement/farmersearchlist.html"
+    ]
+  },
+  "work/farmermanagement/farmersearch.html": {
+    "resources": [
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "js/city.data.js",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css",
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "work/farmermanagement/farmersearchlist.html",
+      "js/app.js",
+      "js/mui.js"
+    ],
+    "refer": [
+      "work/farmermanagement/farmersearchlist.html",
+      "work/farmermanagement/farmerinfo.html"
+    ]
+  },
+  "setting.html": {
+    "resources": [
+      "img/avatar-default.jpg",
+      "js/app.js",
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "changepwd.html"
+    ]
+  },
+  "work/preventionreply/preventionreplysearch.html": {
+    "resources": [
+      "js/mui.picker.min.js",
+      "img/shuijiao.jpg",
+      "img/yuantiao.jpg",
+      "css/mui.picker.min.css"
+    ],
+    "refer": []
+  },
+  "work/farmermanagement/farmersearchlist.html": {
+    "resources": [
+      "img/shuijiao.jpg",
+      "img/yuantiao.jpg",
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "css/mui.poppicker.css",
+      "js/city.data.js",
+      "css/mui.picker.css",
+      "js/mui.min.js",
+      "css/app.css",
+      "css/mui.min.css",
+      "js/mui.js",
+      "js/app.js",
+      "js/mui.pullToRefresh.js",
+      "css/mui.pullToRefresh.css",
+      "js/mui.pullToRefresh.material.js",
+      "js/errorcode.js",
+      "js/userinfo.js"
+    ],
+    "refer": []
+  },
+  "work/farmermanagement/farmerinfo.html": {
+    "resources": [
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "js/city.data.js",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/app.css",
+      "css/mui.min.css",
+      "js/app.js",
+      "js/errorcode.js",
+      "js/mui.js"
+    ],
+    "refer": []
+  },
+  "changepwd.html": {
+    "resources": [
+      "js/app.js",
+      "js/errorcode.js",
+      "js/mui.min.js",
+      "css/app.css",
+      "css/mui.min.css",
+      "js/userinfo.js",
+      "js/mui.enterfocus.js"
+    ]
+  }
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>动物疫病防控</title>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.pullToRefresh.css" />
+    
+</head>
+<body>
+	<div class="mui-content">
+		<div id="searchForm">
+			<input id="farmerName" type="text" value="" placeholder="请输入农户姓名" />
+			<button id='showViliagePicker' class="mui-btn mui-btn-block" type='button'>请选择村舍</button>
+			<button id='searchBtn' class="mui-btn mui-btn-block mui-btn-success">查询</button>
+		</div> 
+		<div id="farmerPullrefresh" class="mui-scroll-wrapper">
+			
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="mui-table-view">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../js/mui.js"></script>
+	<script type="text/javascript" src="../../js/mui.picker.js"></script>
+	<script type="text/javascript" src="../../js/mui.poppicker.js" ></script>
+	<script type="text/javascript" src="../../js/mui.pullToRefresh.js" ></script>
+	<script type="text/javascript" src="../../js/mui.pullToRefresh.material.js" ></script>
+	<script type="text/javascript" src="../../js/city.data.js"></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript" src="../../js/errorcode.js" ></script>
+	<script type="text/javascript" charset="UTF-8">
+      	(function($, doc) {
+			$.init({
+			});
+			
+			//阻尼系数
+			var deceleration = mui.os.ios?0.003:0.0009;
+			$('.mui-scroll-wrapper').scroll({
+				bounce: true,
+				indicators: true, //是否显示滚动条
+				deceleration:deceleration
+			});  
+			
+			$.plusReady(function() {
+				//级联示例
+				var cityPicker = new $.PopPicker({
+					layer: 2
+				}); 
+				cityPicker.setData(cityData);
+				var showCityPickerButton = doc.getElementById('showViliagePicker');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker.show(function(items) {
+						showCityPickerButton.innerText = items[0].text + " " + items[1].text;
+						showCityPickerButton.value=items[1].value;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+//				setTimeout(function() {
+//					mui('#farmerPullrefresh').pullRefresh().pullupLoading();
+//				}, 1000); 
+				
+//				document.getElementById("searchBtn").addEventListener("tap",function(){
+//					var table = document.body.querySelector('.mui-table-view');
+//					while(table.hasChildNodes()) 
+//				        table.removeChild(table.firstChild);
+//					mui('#farmerPullrefresh').pullRefresh().pullupLoading();
+//				});
+
+
+				$('.mui-scroll').pullToRefresh({
+					down: {
+						callback: function() {
+							var self = this;
+							setTimeout(function() {
+								var ul = self.element.querySelector('.mui-table-view');
+								ul.insertBefore(createFragment(ul, 1, 10, true), ul.firstChild);
+								self.endPullDownToRefresh();
+							}, 1000);
+						}
+					},
+					up: {
+						callback: function() {
+							var self = this;
+							setTimeout(function() {
+								var ul = self.element.querySelector('.mui-table-view');
+								ul.appendChild(createFragment(ul, 1, 5));
+								self.endPullUpToRefresh();
+							}, 1000);
+						}
+					}
+				});
+				
+				var createFragment = function(ul, index, count, reverse) {
+					var length = ul.querySelectorAll('li').length;
+					var fragment = document.createDocumentFragment();
+					var li;
+					for (var i = 0; i < count; i++) {
+						li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '第' + (index + 1) + '个选项卡子项-' + (length + (reverse ? (count - i) : (i + 1)));
+						fragment.appendChild(li);
+					}
+					return fragment;
+				};
+				
+			});
+		})(mui, document);
+		
+		
+		
+//		var onDownSuccess = function(data){
+//			var table = document.body.querySelector('.mui-table-view');
+//			var cells = document.body.querySelectorAll('.mui-table-view-cell');
+//			for (var i = 0; i < data.respondCount; i++) {
+//				var li = document.createElement('li');
+//				li.className = 'mui-table-view-cell mui-media';
+//				li.innerHTML = '<a id="'+ data.farmers[i].id +'"><img class="mui-media-object mui-pull-right" src="'+ 
+//					data.farmers[i].img +'"><div class="mui-media-body">'+data.farmers[i].name+' '+data.farmers[i].addr 
+//					+'<p class="mui-ellipsis">电话：'+data.farmers[i].tel +' ' +data.farmers[i].animal +'</p></div></a>'
+//				table.insertBefore(li, table.firstChild);
+//				
+//			}
+//			mui('#farmerPullrefresh').pullRefresh().endPulldownToRefresh(false);
+////			if(data.respondCount<data.requestCount)
+////				mui.toast("已经是全部数据了");
+//		}
+//		 
+//		var onDownError = function(errcode){
+//		    switch(errcode){ 
+//			    case 'FAILED_NETWORK':
+//			        mui.toast(errorCode.FAILED_NETWORK);
+//			        break;
+//			    default:
+//			        mui.toast(errorCode.UNKNOW_ERROR);
+//		    }
+//		    mui('#farmerPullrefresh').pullRefresh().endPulldownToRefresh(false);
+//		};
+//		
+//		function pulldownRefresh() {
+//			var farmerName=mui('#farmerName').value;
+//			var viliage=mui('#showViliagePicker').value;
+//			var params = {account:farmerName, viliage:viliage};
+//			app.webQuery("http://172.16.80.232/test/getfarmer.php", params, onDownSuccess, onDownError, 1);
+//		}
+//		
+//		var onUpSuccess = function(data){
+//			var table = document.body.querySelector('.mui-table-view');
+//			var cells = document.body.querySelectorAll('.mui-table-view-cell');
+//			for (var i = 0; i < data.respondCount; i++) {
+//				var li = document.createElement('li');
+//				li.className = 'mui-table-view-cell mui-media';
+//				li.innerHTML = '<a id="'+ data.farmers[i].id +'"><img class="mui-media-object mui-pull-right" src="'+ 
+//					data.farmers[i].img +'"><div class="mui-media-body">'+data.farmers[i].name+' '+data.farmers[i].addr 
+//					+'<p class="mui-ellipsis">电话：'+data.farmers[i].tel +' ' +data.farmers[i].animal +'</p></div></a>'
+//				table.appendChild(li);
+//				
+//			}
+//			mui('#farmerPullrefresh').pullRefresh().endPullupToRefresh(false);
+////			if(data.respondCount<data.requestCount)
+////				mui.toast("已经是全部数据了");
+//		}
+//		 
+//		var onUpError = function(errcode){
+//		    switch(errcode){ 
+//			    case 'FAILED_NETWORK':
+//			        mui.toast(errorCode.FAILED_NETWORK);
+//			        break;
+//			    default:
+//			        mui.toast(errorCode.UNKNOW_ERROR);
+//		    }
+//		    mui('#farmerPullrefresh').pullRefresh().endPullupToRefresh(false);
+//		};
+//
+//		function pullupRefresh() {
+//			var farmerName=mui('#farmerName').value;
+//			var viliage=mui('#showViliagePicker').value;
+//			var params = {account:farmerName, viliage:viliage};
+//			app.webQuery("http://172.16.80.232/test/getfarmer.php", params, onUpSuccess, onUpError, 1);
+//		}
+    </script>
+</body>
+</html>

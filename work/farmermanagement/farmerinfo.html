@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>动物疫病防控</title>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css"/>
+</head>
+<body>
+	<header id="navtitle" class="mui-bar mui-bar-nav">
+		<a class="mui-icon mui-action-back mui-icon-left-nav mui-pull-left" ></a>
+		<h1  class="mui-title adp-title">新增农户信息</h1>
+		<a id="locate" class="mui-icon mui-icon-navigate mui-icon-right-nav mui-pull-right"></a>
+	</header>
+	<div class="mui-content">
+		<div id="farmerAddFormPart1" class="mui-input-group">
+			<div class="mui-input-row">
+				<label>农户姓名<span class="redFont">*</span></label>
+				<input id="farmerName" type="text" placeholder="请输入姓名">
+			</div>
+			<!--<div class="mui-input-row">
+				<button id='showViliagePicker' class="mui-btn mui-btn-block" type='button'>点击选择所属区域</button>
+			</div>-->
+			<div class="mui-input-row">
+				<label>联系电话<span class="redFont">*</span></label>
+				<input id="farmerPhone" type="text" placeholder="请输入电话">
+			</div>
+			<div class="mui-input-row">
+				<label>家庭住址</label>
+				<input id="farmerAddr" type="text" placeholder="请输入地址">
+			</div>
+			<div class="mui-input-row">
+				<label>住址坐标</label>
+				<div class="mui-row">
+					<div class="mui-col-xs-6"><input id="farmerLon" type="text" placeholder="经度"></div>
+					<div class="mui-col-xs-6"><input id="farmerLat" type="text" placeholder="纬度"></div>
+				</div>
+			</div>
+			<div class="mui-input-row" style="height:auto;">
+				<label>附件</label>
+				<div class="mui-row">
+					<span id="attachment" class="mui-icon mui-icon-plus"> 点击新增附件</span>
+				</div>
+			</div>
+		</div>
+		<div id="farmerAddFormPart2">
+			<button id='showViliagePicker' class="mui-btn mui-btn-block" type='button'>请选择所属区域</button>
+		</div>
+		<div id="farmerAddFormPart3" class="mui-content-padded" style="height:20px;">
+			<h5 class="mui-pull-left">饲养的动物：</h5>
+			<button id="addAnimal" type="button" class="mui-btn mui-btn-link mui-pull-right">添加</button>
+		</div>	
+		<div id="farmerAddFormPart4">
+		</div>
+		<button id='addSaveBtn' class="mui-btn mui-btn-block mui-btn-success">保存</button>
+	</div>
+	<script type="text/javascript" src="../../js/mui.min.js"></script>
+	<script type="text/javascript" src="../../js/mui.picker.js"></script>
+	<script type="text/javascript" src="../../js/mui.poppicker.js" ></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript" src="../../js/errorcode.js" ></script>
+	<script type="text/javascript" src="../../js/city.data.js"></script>
+	<script type="text/javascript" src="../../js/animalunit.data.js" ></script>
+	<script type="text/javascript" charset="UTF-8">
+		var wd,farmerName,farmerId;
+		var userPicker = new mui.PopPicker();
+		userPicker.setData(animalunit);
+		
+		function showPosition(position)
+		{
+			lat=position.coords.latitude;
+			lon=position.coords.longitude;
+			document.getElementById('farmerLat').value=lat;
+			document.getElementById('farmerLon').value=lon;
+			wd.close();
+		};
+
+		function showError(error) {
+			wd.close();
+			switch (error.code) {
+				case error.PERMISSION_DENIED:
+					mui.toast(errorCode.PERMISSION_DENIED);
+					break;
+				case error.POSITION_UNAVAILABLE:
+					mui.toast(errorCode.POSITION_UNAVAILABLE);
+					break;
+				case error.TIMEOUT:
+					mui.toast(errorcode.TIMEOUT);
+					break;
+				case error.UNKNOWN_ERROR:
+					mui.toast(errorCode.UNKNOW_ERROR);
+					break;
+			};
+		};
+
+		/*增加新的动物*/
+		var addAnimal = function(animal){
+			var animalForm=document.getElementById('farmerAddFormPart4');
+			var div=document.createElement('div');
+			div.className='mui-input-group';
+			div.innerHTML='<div class="mui-input-row"><label>动物名称</label><input type="text" class="animalName" placeholder="请输入动物名称"></div>'+
+			'<div class="mui-input-row"><label>数量</label><input type="text" class="animalCount" placeholder="请输入动物数量"></div><div class="mui-input-row">'+
+			'<button id="showUnitPicker" class="mui-btn mui-btn-block unitPicker" type="button">点击选择动物单位</button></div><span class="mui-icon mui-icon-close delIcon"></span>';
+			animalForm.insertBefore(div,animalForm.firstChild);
+			if(animal){
+				div.querySelector('.animalName').value=animal.name;
+				div.querySelector('.animalCount').value=animal.count;
+				div.querySelector('.unitPicker').value=animal.unit;
+				div.querySelector('.unitPicker').innerText=app.getTextByValue(animalunit, animal.unit);
+			}
+			var unitPickerButton = div.querySelector('.unitPicker');
+			unitPickerButton.addEventListener('tap', function(event) {
+				userPicker.show(function(items) {
+					unitPickerButton.innerText=items[0].text;
+					unitPickerButton.value=items[0].value;
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+			
+			var delBtn=div.querySelector('.delIcon');
+			delBtn.addEventListener('tap', function(){
+				var btn = ["确定","取消"];
+				mui.confirm('确认删除该条信息？','提示',btn,function(e){
+					if(e.index==0){
+						removeAnimal(div);
+					}
+				});
+			});
+		}; 
+		
+		/*删除动物信息*/
+		var removeAnimal = function(div){
+			var unitPickerButton = div.querySelector('.unitPicker');
+			unitPickerButton.removeEventListener('tap',function(){});
+			var animalForm=document.getElementById('farmerAddFormPart4');
+			div.querySelector('.delIcon').removeEventListener('tap',function(){});
+			animalForm.removeChild(div);
+		};
+		
+		var addAttachment =function(attach){
+			var attachContainer=document.getElementById('attachment').parentNode;
+			var span=document.createElement('span');
+			span.className='attachment';
+			span.innerHTML='<i class="mui-icon mui-icon-paperclip"></i>'+attach.display;
+			span.setAttribute('data-url',attach.url);
+			attachContainer.insertBefore(span,attachContainer.firstChild);
+			span.addEventListener('tap',function(){
+				/*使用系统浏览器处理，感觉更好一些*/
+				var currentUrl=plus.webview.currentWebview().getURL();
+				plus.runtime.openURL(currentUrl.substr(0,currentUrl.lastIndexOf('/')+1)+app.filedownload_url+'?attaid='+this.getAttribute('data-url'));
+				/*使用plus的下载工具处理*/
+//				var options = {method:"GET"};
+//				dtask = plus.downloader.createDownload( this.getAttribute('data-url'), options, function (task, status) {
+//					// 下载完成
+//					if ( status == 200 ) { 
+//						mui.toast( "下载完成！" );
+//					} else {
+//						mui.toast(errorCode.FAILED_DOWNLOAD);
+//					}  
+//				});
+//				dtask.addEventListener("statechanged", function(task,status){
+//				    	if(!dtask){return;}
+//				    	switch(task.state) {
+//				    		case 1: // 开始
+//				    			mui.toast( "开始下载..." );
+//				    		break;
+//				    		case 2: // 已连接到服务器
+//				    			mui.toast( "链接到服务器..." );
+//				    		break;
+//				    		case 3:	// 已接收到数据
+//				    			//mui.toast( "下载数据更新:" );
+//				    			//outLine( task.downloadedSize+"/"+task.totalSize );
+//				    		break;
+//				    		case 4:	// 下载完成
+//				    			//mui.toast( "下载完成！" );
+//				    		break;
+//				    	}
+//			    });
+//			    dtask.start();
+			});
+		};
+		
+		/*初始化页面控件，全部清空*/
+		var initForm = function(){ 
+			farmerName='';
+		    farmerId='';
+			document.getElementById('navtitle').querySelector('h1').innerText="新增农户信息";
+			var table = document.body.querySelector('#farmerAddFormPart4');
+			while(table.hasChildNodes()){
+				if(table.firstChild.nodeType!=1){
+					table.removeChild(table.firstChild);
+					continue;
+				}
+				removeAnimal(table.firstChild);
+			}; 
+			document.getElementById('showViliagePicker').innerHTML="请选择所属区域";
+			document.getElementById('showViliagePicker').value="";
+			var inputList=document.querySelectorAll('input');
+			for(var i=0;i<inputList.length;i++){
+				inputList[i].value=""; 
+			}
+			var attachContainer=document.getElementById('attachment').parentNode;
+			var attachSpans=attachContainer.querySelectorAll('.attachment');
+			for(var i=0;i<attachSpans.length;i++){
+				attachContainer.removeChild(attachSpans[i]);
+			}
+		}; 
+		
+		var onSuccess = function(data){
+			//处理DOM对象，显示信息内容
+			try{
+				app.setValue('farmerName',farmerName);
+				app.setValue('farmerPhone',data.tel);
+				app.setValue('farmerAddr',data.addr || '');
+				app.setValue('farmerLon',data.lon || '');
+				app.setValue('farmerLat',data.lat || '');
+				app.setValue('showViliagePicker',data.region);
+				document.getElementById('showViliagePicker').innerText=data.regionname;
+				for(var i=0; i< data.animals.length; i++){
+					addAnimal(data.animals[i]);
+				}
+				for(var i=0; i< data.attach.length; i++){
+					addAttachment(data.attach[i]);
+				}
+			}catch(e){
+				console.log(e.message);
+			    mui.toast(errorCode.BAD_DATA);
+			}
+			wd.close();
+		};
+		
+		var onError = function(errcode){
+			wd.close(); // 失败，先关闭等待的对话框  
+			switch(errcode){
+			    case 'FAILED_NETWORK':
+			        mui.toast(errorCode.FAILED_NETWORK);
+			        break;
+			    case 'INVALID_FARMER':
+			    		mui.toast(errorCode.INVALID_FARMER);
+			        break;
+			    default:
+			        mui.toast(errorCode.UNKNOW_ERROR);
+		   };
+		};
+		
+		var onSubmitSuccess = function(data){
+			uploadAttachment(data.farmerId);
+		};
+		
+		var onSubmitError = function(errcode){
+			onError(errcode);
+		};
+		
+		var uploadAttachment = function(fId){
+			var newAttachmentList=mui('div.attachment');
+			if(newAttachmentList.length==0){
+				wd.close();
+				mui.toast('提交成功');
+				mui.openWindow({id:'farmersearch'});
+				return;
+			}
+			
+			wd.setTitle('附件提交中，请等待...');
+			var currentUrl=plus.webview.currentWebview().getURL();
+			var task=plus.uploader.createUpload(currentUrl.substr(0,currentUrl.lastIndexOf('/')+1) + app.farmerupload_url,
+				{method:"POST"},
+				function(t, status){ //上传完成
+					if(status==200){
+						wd.close();
+						mui.toast("上传成功");
+					}else{
+						wd.close();
+						mui.toast(errorCode.FAILED_UPLOAD + ":" + status);
+					}
+					mui.openWindow({id:'farmersearch'});
+				}
+			);
+			
+			task.addData("farmerId", fId);
+			task.addData('fileCount',newAttachmentList.length.toString());
+			
+			mui('div.attachment').each(function(i,obj){
+				task.addFile(obj.getAttribute('data-url'), {key:'attachment'+i});
+			});
+
+			task.start();
+		};
+		
+		(function($, doc) {
+			$.init();
+			$.plusReady(function() {
+				window.addEventListener('getFarmerInfo',function(event){
+		      		initForm();
+		      		if(event.detail.id){
+		      			farmerName=event.detail.name;
+		      			farmerId=event.detail.id;
+		      			document.getElementById('navtitle').querySelector('h1').innerText=event.detail.name;
+		      			wd = plus.nativeUI.showWaiting("获取信息中，请等待...",{back:"none"});
+		      			var params={farmerId:event.detail.id};
+		      			app.webQuery(app.getfarmerinfo_url,params,onSuccess,onError,1);
+		      		}	
+		      	});
+
+				//级联示例
+				var cityPicker = new $.PopPicker({
+					layer: 2
+				});
+				cityPicker.setData(cityData);
+				var showCityPickerButton = doc.getElementById('showViliagePicker');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker.show(function(items) {
+						showCityPickerButton.innerText = items[1].text;
+						showCityPickerButton.value = items[1].value;;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+				
+				/*添加附件按钮响应，只允许添加图片*/
+				document.getElementById('attachment').addEventListener('tap',function(){
+					plus.gallery.pick( function(path){
+				    		if(0!=path.indexOf("file://")){
+							path="file://"+path;
+						}
+				    		var fileName=path.substring(path.lastIndexOf('/')+1);
+				    		var attachContainer=document.getElementById('attachment').parentNode;
+				    		var div=document.createElement('div');
+				    		div.className='attachment';
+				    		div.setAttribute('data-url',path);
+				    		div.innerHTML='<span class="mui-icon mui-icon-trash delAttachment"></span></div>'+fileName;
+				    		attachContainer.appendChild(div);
+				    		var delBtn=div.querySelector('.delAttachment');
+				    		delBtn.addEventListener('tap',function(){
+				    			attachContainer.removeChild(div);
+				    			delBtn.removeEventListener('tap',function(){});
+				    		});
+				    }, function ( e ) {
+				    	
+				    }, {filter:"image"} );
+				});
+				
+				/*保存按钮响应*/
+				document.getElementById('addSaveBtn').addEventListener('tap',function(){
+					//这里需要根据农户ID判断是对老数据的修改还是新增数据，如果是新增数据，那么
+					//保存过后需要调用farmersearchlist的下拉获取最新数据（后来想想还是不要了,
+					//谁知道新增的数据和当前的检索结果是不是同一标准呢）
+					 
+					var farmerName=app.getValue('farmerName');
+					var farmerPhone=app.getValue('farmerPhone');
+					var farmerRegion=app.getValue('showViliagePicker');
+
+					if(!farmerName){
+						mui.toast(errorCode.EMPTY_FARMERNAME);
+						return;
+					};
+					 
+					if(!farmerPhone){
+						mui.toast(errorCode.EMPTY_FARMERTEL);
+						return;
+					};
+					 
+					if(!farmerRegion){
+						mui.toast(errorCode.EMPTY_FARMERREGION);
+						return;
+					};
+					 
+					var farmerAddr=app.getValue('farmerAddr');
+					var farmerLon=app.getValue('farmerLon');
+					var farmerLat=app.getValue('farmerLat');
+					 
+					var animalList=[];
+					var animalNameList=document.querySelectorAll('.animalName');
+					var animalCountList=document.querySelectorAll('.animalCount');
+					var animalUnitList=document.querySelectorAll('.unitPicker');
+					 
+					for(var i=0;i<animalNameList.length;i++){
+						if(animalNameList[i].value && animalCountList[i].value && animalUnitList[i].value)
+							animalList.push({animalName:animalNameList[i].value,animalCount:animalCountList[i].value,animalUnit:animalUnitList[i].value});
+					}
+
+					var params={farmerId:farmerId,farmerName:farmerName,farmerPhone:farmerPhone,farmerRegion:farmerRegion,farmerAddr:farmerAddr,farmerLon:farmerLon,farmerLat:farmerLat,animalList:JSON.stringify(animalList)};	
+					wd = plus.nativeUI.showWaiting("信息提交中，请等待...",{back:"none"});
+					app.webQuery(app.savefarmerinfo_url, params,onSubmitSuccess,onSubmitError,1);
+				});
+				
+				/*添加动物按钮响应*/
+				document.getElementById('addAnimal').addEventListener('tap', function(){
+					addAnimal();
+				});
+				
+				/*定位按钮响应*/
+				document.getElementById('locate').addEventListener('tap',function(){
+					var locatewd = plus.nativeUI.showWaiting("获取定位信息，请等待...",{back:"none"});
+					plus.geolocation.getCurrentPosition(function(geoData){
+						locatewd.close();
+						document.getElementById('farmerLat').value=geoData.coords.latitude;
+						document.getElementById('farmerLon').value=geoData.coords.longitude;
+					},function(err){
+						locatewd.close();
+						$.toast(errorCode.FAILED_LOCATED);
+					});
+//					if (navigator.geolocation){
+//				    		navigator.geolocation.getCurrentPosition(showPosition,showError);
+//				    }
+				});
+			});
+		})(mui, document);
+    </script>
+</body>
+</html>

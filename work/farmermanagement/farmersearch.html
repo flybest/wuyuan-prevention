@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>动物疫病防控</title>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>  
+</head>
+<body>
+	<header id="navtitle" class="mui-bar mui-bar-nav">
+		<a id='back' class="mui-icon mui-action-back mui-icon-left-nav mui-pull-left"></a>
+		<button style="display:none;" id='cancelSel' class="mui-btn mui-btn-link mui-pull-left">取消</button>
+		<h1  class="mui-title adp-title">农户信息管理</h1>
+		<a id="addFarmer" data-page="farmerinfo" class="mui-icon mui-icon-plusempty mui-icon-right-nav mui-pull-right"></a>
+		<button style="display:none;" id='delItems' class="mui-btn mui-btn-link mui-pull-right">删除</button>
+	</header>
+	<div class="mui-content"></div>
+	<script type="text/javascript" src="../../js/mui.min.js"></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript" charset="UTF-8">
+      	var editing = function(statue){
+			var back=document.getElementById('back');
+			var addFarmer=document.getElementById('addFarmer');
+			var cancelSel=document.getElementById('cancelSel');
+			var delItems=document.getElementById('delItems');
+
+			if (statue) {
+				back.style.display='none';
+				addFarmer.style.display='none';
+				cancelSel.style.display='';
+				delItems.style.display='';
+			}else{
+				back.style.display='';
+				addFarmer.style.display='';
+				cancelSel.style.display='none';
+				delItems.style.display='none';
+			}
+		};
+      	
+      	(function($, doc) {
+			$.init({
+				gestureConfig:{
+					doubletap:true
+				}
+			});
+			$.plusReady(function() {
+				var farmerInfo=document.getElementById("addFarmer");
+				var cancelSel=document.getElementById('cancelSel');
+				var delItems=document.getElementById('delItems');
+				var pageId = farmerInfo.getAttribute("data-page");
+				
+				var addFarmerPage = $.preload({
+					"id": pageId,
+					"url": app.project_url+'work/farmermanagement/farmerinfo.html'
+				});
+				
+				farmerInfo.addEventListener("tap",function(e){
+					//给详情窗口传递信息
+					$.fire(addFarmerPage,'getFarmerInfo',{id:''});
+					setTimeout(function() {
+						$.openWindow({
+							id: pageId,
+							show: {
+								aniShow: 'pop-in'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					}, 0);					
+				});
+				
+				cancelSel.addEventListener('tap',function(){
+					//调用子页面的结束编辑
+					if(contentWebview==null){
+						contentWebview = plus.webview.currentWebview().children()[0];
+					}
+					contentWebview.evalJS("endEdit()");
+				});
+				
+				delItems.addEventListener('tap',function(){
+					//调用子页面的删除
+					if(contentWebview==null){
+						contentWebview = plus.webview.currentWebview().children()[0];
+					}
+					contentWebview.evalJS("delSelectedItems()");
+				});
+			});
+			
+			//editing(true);
+		})(mui, document);
+		
+		var contentWebview = null;
+		document.querySelector('header').addEventListener('doubletap',function () {
+			if(contentWebview==null){
+				contentWebview = plus.webview.currentWebview().children()[0];
+			}
+			contentWebview.evalJS("mui('#farmerPullrefresh').pullRefresh().scrollTo(0,0,100)");
+		});
+    </script>
+</body>
+</html>

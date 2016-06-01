@@ -1,0 +1,363 @@
+/*公共界面*/
+body{
+	/*background-color: #FFF;*/
+}
+
+.mui-content{
+	/*background-color: transparent;*/
+}
+
+.mui-btn-block{
+	margin-top:20px;
+	padding:8px 0;
+}
+
+.redFont{
+	color:#f00;
+	padding:5px 0 0 4px;
+}
+
+/*登录页部分的CSS样式*/
+#logincontent{
+	-webkit-transform: translate(0, 30%);
+	transform: translate(0, 30%);
+}
+
+#logincontent h2{
+	text-align: center;
+}
+
+#logincontent h2 img{
+	width: 200px;
+}
+
+#logincontent .mui-card{
+	background-color: transparent;
+	margin-top: 20px;
+	border:none;
+}
+
+#logincontent .mui-card .mui-input-group{
+	background-color: transparent;
+}
+
+#logincontent .mui-card .mui-input-group .mui-input-row{
+	background-color: #fff;
+	margin-top:10px;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border:1px solid #ddd;
+}
+
+#logincontent .mui-card .mui-input-group .mui-input-row label{
+	padding:8px 15px;
+}
+
+#logincontent .mui-card .mui-input-group .mui-input-row:after{
+	display: none;
+}
+
+#logincontent #loginBtn{
+	background-color: #4a82d1;
+	border-color: #4a82d1;
+}
+
+#logincontent #loginBtn:enabled:active{
+	background-color: #126aff;
+	border-color: #126aff;
+}
+
+/*菜单部分的样式*/
+#navtitle.mui-bar-nav {
+	background-color: #4a82d1;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+#navtitle .adp-title,
+#navtitle.mui-bar-nav a {
+	color: white;
+}
+
+#navtitle .mui-btn-link{
+	color:white;
+}
+
+#navcontent .mui-table-view{
+	/*background-color: transparent;*/
+}
+
+#navcontent img{
+	width:40px;
+}
+
+/*个人设置界面的样式*/
+#setting{
+	width:100%;
+}
+
+#setting .personAvatar{
+	width:100%;
+	margin:50px 0 30px 0;
+	text-align: center;
+}
+
+#setting .desIcon{
+	margin-right:10px;
+}
+
+#setting #avatar{
+	width:150px;
+}
+
+/*农户信息管理*/
+#searchForm{
+	padding:10px 10px;
+	/*border-bottom: 1px solid #ccc;*/
+}
+
+#searchForm #farmerName{
+	height:43px;
+	margin:0 0 5px 0;
+}
+
+#searchForm #showViliagePicker,
+#searchForm #searchBtn{
+	margin:0 0 5px 0;
+}
+
+#farmerPullrefresh{
+	top:165px;
+}
+
+#farmerPullrefresh .checkbox{
+	line-height: 42px;
+    height: 42px;
+    z-index: 999;
+    top: 12px;
+    left: -28px;
+    transition:left .5s ease-out;
+	-moz-transition:left .5s ease-out; /* Firefox 4 */
+	-webkit-transition:left .5s ease-out; /* Safari and Chrome */
+	-o-transition:left .5s ease-out; /* Opera */
+}
+
+#farmerPullrefresh .mui-media-body{
+	transition:margin-left .5s ease-out;
+	-moz-transition:margin-left .5s ease-out; /* Firefox 4 */
+	-webkit-transition:margin-left .5s ease-out; /* Safari and Chrome */
+	-o-transition:margin-left .5s ease-out; /* Opera */
+}
+
+#farmerPullrefresh .checkbox.checkmode {
+    left: 12px;
+}
+
+#farmerPullrefresh .mui-media-body.checkmode{
+	margin-left:40px;
+}
+
+/*农户信息新增*/
+#farmerAddFormPart1,
+#preventionreplyBasePart{
+	margin-top: 15px;
+}
+
+#farmerAddFormPart1 #showViliagePicker,
+#farmerAddFormPart4 #showUnitPicker,
+#animalAddPart4 #showUnitPickerP,
+#vaccineinfoPart #showUnitPickerQ,
+#vaccineinfoPart #showUnitYm,
+#vaccineinfoPart1 #showUnitPickerQ1,
+#vaccineinfoPart1 #showUnitYm1,
+#animalAddPart5 #showUnitPickerP1{
+	margin: 0;
+    border: none;
+    width: 100%;
+    padding-left: 0;
+}
+
+#farmerAddFormPart1 .mui-row,
+#loadpicPart .mui-row{
+	width:65%;
+	float:left;
+}
+
+#farmerAddFormPart1 .mui-row input{
+	padding-left:0px;
+}
+
+#farmerAddFormPart1 .labelSpan{
+	display:inline-block;
+	padding-left: 15px;
+	vertical-align: middle;
+	height:40px;
+	line-height: 40px;
+}
+
+#farmerAddFormPart1 .attachment,
+#loadpicPart .attachment{
+	float:left;
+	clear: both;
+	padding:9px 5px;
+	font-size: 17px;
+	font-weight:normal;
+	color:#4a82d1;
+	word-break: break-all;
+}
+
+#farmerAddFormPart1 div.attachment,
+#loadpicPart div.attachment{
+	width:100%;
+}
+
+#farmerAddFormPart1 #attachment,
+#loadpicPart #attachment{
+	font-size: 17px;
+	height: 40px;
+    line-height: 40px;
+    color: #848282;
+    cursor:pointer;
+    padding: 0 5px;
+    float:left;
+    clear:both;
+}
+
+#farmerAddFormPart1 span.attachment:active,
+#farmerAddFormPart1 #attachment:active,
+#loadpicPart span.attachment:active,
+#loadpicPart #attachment:active{
+	background-color: #ccc;
+}
+
+#farmerAddFormPart1 .delAttachment,
+#loadpicPart .delAttachment{
+    margin-right: 5px;
+    text-align: center;
+    color: red;
+    cursor:pointer;
+}
+
+#farmerAddFormPart2 #showViliagePicker{
+	margin-top: 15px;
+	border-radius: 0;
+	border-style: solid none solid none;
+	border-color: #c8c7cc;
+	padding:6px 0;
+}
+
+#farmerAddFormPart3 h5,
+#farmerPart h5{
+	margin: 6px 0;
+    height: 19px;
+    line-height: 19px;
+}
+
+#farmerAddFormPart4 .mui-input-group{
+	margin-bottom: 3px;
+}
+
+#farmerAddFormPart4 .mui-input-group .mui-input-row,
+#animalAddPart4 .mui-input-group .mui-input-row,
+#vaccineinfoPart .mui-input-group .mui-input-row,
+#vaccineinfoPart1 .mui-input-group .mui-input-row,
+#animalAddPart5 .mui-input-group .mui-input-row{
+	margin-right:60px;
+}
+
+#farmerAddFormPart4 .delIcon,
+#animalAddPart4 .delIcon,
+#animalAddPart5 .delIcon{
+	color:red;
+	font-weight: bold;
+	position: absolute;
+    right: 15px;
+    top: 50px;
+    cursor: pointer;
+}
+
+/*防疫工作接收*/
+#prevenSearch .prevenCol{
+	padding:10px 5px;
+}
+
+#prevenSearch #prevenDate{
+	height:43px;
+	margin:0;
+}
+
+#prevenSearch #searchBtn{
+	margin:0;
+}
+
+#replyPullrefresh{
+	top:63px;
+}
+
+.workBlock{
+	margin-bottom: 5px;
+}
+
+.workBlock:last-child{
+	margin-bottom: 0px;
+}
+
+#vaccineinfoPart1 button{
+	border-radius: 0;
+}
+
+/*防疫工作下发*/
+#preventInpt{
+	margin:10px 0px 5px 0px;
+	padding:0;
+}
+
+#preventInpt .prevenCol{
+	padding:0px 5px 5px 5px;
+}
+
+#preventInpt #preventPerName{
+	height:43px;
+}
+
+#preventInpt #preventPerName,
+#preventInpt #prevenDate,
+#preventInpt #showViliagePicker,
+#preventInpt #searchBtn{
+	margin:0;
+}
+
+#preventInpt #showViliagePicker{
+	margin-bottom:5px;
+}
+
+#preventForm .workBlock .guiji{
+	text-align: right;
+    margin-top: 10px;
+}
+
+#demo2.dateTop,
+#demo3.dateTop,
+#lqDate.dateTop,
+#mianyiDate.dateTop{
+	margin: 0;
+    border: none;
+    width: 65%;
+    padding-left: 0;
+    border-radius: 0;
+}
+.bntC{
+	width: 100%;
+}
+
+.contentB{
+	border-radius: 2%;
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
+	margin-bottom: 5px;
+}
+
+#farmerPart .mui-table-view:before{
+	z-index:999;
+}

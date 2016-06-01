@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>动物疫病防控</title>
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+	</head>
+
+	<body>
+		<header id="navtitle" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title adp-title">新建防疫工作</h1>
+		</header>
+		<div id="preventionsendForm" class="mui-content">
+			<div id="preventionSentBasePart" class="mui-input-group workBlock">
+				<div class="mui-input-row">
+					<label>防疫工作编号</label>
+					<input id="preventsendNum" type="text" value="20160315001" readonly="true">
+				</div>
+				<div class="mui-input-row">
+					<label>防疫员姓名<span class="redFont">*</span></label>
+					<input id="workersName" type="text" placeholder="请输入姓名">
+				</div>
+				<!--<div class="mui-input-row">
+					<label>农户姓名<span class="redFont">*</span></label>
+					<input id="farmerNameP" type="text" placeholder="请输入姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>农户电话<span class="redFont">*</span></label>
+					<input id="farmerPhoneP" type="text" placeholder="请输入电话">
+				</div>-->
+			</div>
+			<div class="mui-content-padded" style="height:20px;">
+				<h5 class="mui-pull-left">农户信息</h5>
+
+			</div>
+			<div class="mui-input-group workBlock">
+
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse">
+
+						<a class="mui-navigate-right" >董国良</a>
+
+						<!--</div>-->
+						<div class="mui-collapse-content">
+							<div class="mui-input-row">
+								<label>农户电话<span class="redFont">*</span></label>
+								<input id="farmerPhoneP" type="text" placeholder="请输入电话">
+							</div>
+							<div id="preventionreplyPart1" class="mui-content-padded" style="height:20px;">
+								<h5 class="mui-pull-left">免疫动物</h5>
+								<button type="button" class="mui-btn mui-btn-link mui-pull-right">添加</button>
+
+							</div>
+
+							<div id="animalAddPart4">
+								<div class="mui-input-group contentB">
+									<div class="mui-input-row">
+						<label>动物名称</label>
+						<input id="animalNameP" type="text" placeholder="请输入动物名称">
+					</div>
+					<div class="mui-input-row">
+						<label>数量</label>
+						<input id="animalCountP" type="text" placeholder="请输入动物数量">
+					</div>
+					<div class="mui-input-row">
+						<button id='showUnitPickerP' class="mui-btn mui-btn-block" type='button'>点击选择动物单位</button>
+					</div>
+									<span class="mui-icon mui-icon-close delIcon"></span>
+								</div>
+							</div>
+						</div>
+
+					</li>
+
+				</ul>
+			</div>
+			<div id="vaccineinfoPart"  class="mui-input-group workBlock">
+				<div class="mui-input-row">
+					<label>疫苗名称<span class="redFont">*</span></label>
+					<input id="vaccineinfoname" type="text"  placeholder="请输入疫苗名称" >
+				</div>
+				<div class="mui-input-row">
+					<label>规格<span class="redFont">*</span></label>
+					<input id="guige" type="text" placeholder="请输入规格">
+				</div>
+				<div class="mui-input-row">
+					<label>用量<span class="redFont">*</span></label>
+					<input id="yongliang" type="text" placeholder="请输入用量">
+				</div>
+				<div class="mui-input-row">
+					<button id='showUnitPickerQ' class="mui-btn mui-btn-block" type='button'>点击选择计量单位</button>
+				</div>
+				<div class="mui-input-row">
+					<label>疫苗数量<span class="redFont">*</span></label>
+					<input id="yimiaoshuliang" type="text" placeholder="请输入数量">
+				</div>
+				<div class="mui-input-row">
+					<button id='showUnitYm' class="mui-btn mui-btn-block" type='button'>点击选择计量单位</button>
+				</div>
+			</div>
+			<div id="DateMangPart"  class="mui-input-group" style="padding-top:1px ;">
+
+				<div class="mui-input-row">
+					<label>领取日期</label>
+					<button id='demo2' class="btn mui-btn mui-btn-block dateTop "  data-options='{"type":"date","beginYear":2014,"endYear":2016}' >选择日期 ...</button>
+				</div>
+				<div class="mui-input-row">
+					<label>免疫日期</label>
+					<button id='demo3' class="btn mui-btn mui-btn-block dateTop "   data-options='{"type":"date","beginYear":2014,"endYear":2016}' >选择日期 ...</button>
+				</div>
+			</div>
+			<div id="preventionSentWorkPart" class="mui-content-padded"  style="height:20px;">
+				<h5 class="mui-pull-left">免疫动物</h5>
+				<button type="button" class="mui-btn mui-btn-link mui-pull-right">添加</button>
+
+			</div>
+			<!--<div id="animalAddPart4">
+				<div class="mui-input-group">
+					<div class="mui-input-row">
+						<label>动物名称</label>
+						<input id="animalNameP" type="text" placeholder="请输入动物名称">
+					</div>
+					<div class="mui-input-row">
+						<label>数量</label>
+						<input id="animalCountP" type="text" placeholder="请输入动物数量">
+					</div>
+					<div class="mui-input-row">
+						<button id='showUnitPickerP' class="mui-btn mui-btn-block" type='button'>点击选择动物单位</button>
+					</div>
+					<span class="mui-icon mui-icon-close delIcon"></span>
+				</div>
+			</div>-->
+			<button id='addSendSaveBtn' class="mui-btn mui-btn-block mui-btn-success">下发</button>
+		</div>
+		<script type="text/javascript" src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/mui.picker.js"></script>
+		<script type="text/javascript" src="../../js/mui.poppicker.js"></script>
+		<script type="text/javascript" src="../../js/mui.picker.min.js"></script>
+		<script>
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					//普通示例
+					var userPicker = new $.PopPicker();
+					userPicker.setData([{
+						value: '1',
+						text: '头'
+					}, {
+						value: '2',
+						text: '匹'
+					}]);
+					var showUserPickerButton = doc.getElementById('showUnitPickerP');
+					showUserPickerButton.addEventListener('tap', function(event) {
+						userPicker.show(function(items) {
+							//							showUserPickerButton.innerText = JSON.stringify(items[0]);
+							showUserPickerButton.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					
+					var userPickerQ=new $.PopPicker();
+					userPickerQ.setData([{
+						value:"1",text:"头/ml"
+						},{value:"2",text:"头/份"}]);
+					var showUserPickerButtonQ=doc.getElementById('showUnitPickerQ');
+					showUserPickerButtonQ.addEventListener('tap',function(event){
+					userPickerQ.show(function(items) {
+							//							showUserPickerButton.innerText = JSON.stringify(items[0]);
+							showUserPickerButtonQ.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false) ;
+					
+					
+					var userPickerY=new $.PopPicker();
+					userPickerY.setData([{
+						value:"1",text:"瓶"
+						},{value:"2",text:"盒"
+						},{value:"3",text:"袋"
+						},{value:"4",text:"桶"
+						}]);
+					var showUserPickerButtonY=doc.getElementById('showUnitYm');
+					showUserPickerButtonY.addEventListener('tap',function(event){
+					userPickerY.show(function(items) {
+							//							showUserPickerButton.innerText = JSON.stringify(items[0]);
+							showUserPickerButtonY.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false) ;
+					//---
+					var result = new $.PopPicker(); //('#result')[0];
+					var btns = $('.btn');
+					btns.each(function(i, btn) {
+					btn.addEventListener('tap', function() {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						
+						var options = JSON.parse(optionsJson);
+						
+						var id = this.getAttribute('id');
+						
+						/*
+						 * 首次显示时实例化组件
+						 * 示例为了简洁，将 options 放在了按钮的 dom 上
+						 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+						 */
+						var picker = new $.DtPicker(options);
+						picker.show(function(rs) {
+							/*
+							 * rs.value 拼合后的 value
+							 * rs.text 拼合后的 text
+							 * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+							 * rs.m 月，用法同年
+							 * rs.d 日，用法同年
+							 * rs.h 时，用法同年
+							 * rs.i 分（minutes 的第二个字母），用法同年
+							 */
+							doc.getElementById(id).innerText=rs.text;
+							//result.innerText = '选择结果: ' + rs.text;
+							/* 
+							 * 返回 false 可以阻止选择框的关闭
+							 * return false;
+							 */
+							/*
+							 * 释放组件资源，释放后将将不能再操作组件
+							 * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+							 * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+							 * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+							 */
+							picker.dispose();
+						});
+					}, false);
+				});
+				});
+			})(mui, document);
+		</script>
+	</body>
+
+</html>
